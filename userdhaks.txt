@@ -1,0 +1,30 @@
+
+@startuml
+actor User
+actor Vet
+participant Pet
+participant Appointment
+participant Schedule
+participant Payment
+
+User -> Pet: Create Pet Profile
+User -> Appointment: Schedule Appointment
+User -> Payment: Make Payment
+User -> Vet: Request Emergency Help
+
+Pet --> User: Associated with
+Appointment --> User: Associated with
+Vet --> Pet: Associated with
+Vet --> User: Accept Appointment
+Vet -> Schedule: View Schedule
+Vet --> Appointment: Conduct Consultation
+Vet --> Appointment: Update Appointment Status
+
+Appointment -> Pet: Associated with
+Appointment -> Vet: Associated with
+Appointment -> Schedule: Associated with
+Appointment -> Payment: Associated with
+
+User --> User: Log In/Sign Up/Log Out
+
+@enduml
