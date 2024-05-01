@@ -1,0 +1,44 @@
+@startuml
+
+class Pet {
+  -name: string
+  -species: string
+  -breed: string
+  -age: int
+}
+
+class Appointment {
+  -pet: Pet
+  -date_time: string
+  -veterinarian: Veterinarian
+  -status: string
+  +confirm(): void
+  +cancel(): void
+}
+
+class VetClinic {
+  -appointments: list
+  +schedule_appointment(pet: Pet, date_time: string): Appointment
+  +associate_veterinarian(appointment: Appointment, veterinarian: Veterinarian): void
+  +accept_appointment(appointment: Appointment): void
+  +decline_appointment(appointment: Appointment): void
+  +conduct_consultation(appointment: Appointment): void
+}
+
+class Veterinarian {
+  -name: string
+  -specialization: string
+}
+
+class Payment {
+  -amount: float
+  -method: string
+  +process_payment(): void
+}
+
+Pet "1" --> "1" Appointment
+Appointment "1" --> "1" Veterinarian
+Appointment "*" --> "*" Payment
+VetClinic "*" --> "*" Appointment
+
+@enduml
